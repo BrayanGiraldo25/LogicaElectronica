@@ -1,4 +1,5 @@
 package com.example;
+
 import java.util.Scanner;
 
 public class Main {
@@ -13,11 +14,15 @@ public class Main {
         double resultado;
         String resultadoT;
 
-        String[] Colores = {"Negro", "Marron", "Rojo", "Naranja", "Amarillo", "Verde", "Azul", "Violeta", "Gris", "Blanco"};
-        String[] ColoresM = {"Negro", "Marron", "Rojo", "Naranja", "Amarillo", "Verde", "Azul", "Violeta", "Gris", "Blanco", "Oro", "Plata"};
-        String[] Porcentaje = {"1%", "2%", "0.5%", "0.25%", "0,1%", "0.05%", "5%", "10%", "20%"};
-        int[] valores = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-        int[] multiplicador = {1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000};
+        String[] Colores = { "Negro", "Marron", "Rojo", "Naranja", "Amarillo", "Verde", "Azul", "Violeta", "Gris",
+                "Blanco" };
+        String[] ColoresM = { "Negro", "Marron", "Rojo", "Naranja", "Amarillo", "Verde", "Azul", "Violeta", "Gris",
+                "Blanco", "Oro", "Plata" };
+        String[] Porcentaje = { "1%", "2%", "0.5%", "0.25%", "0,1%", "0.05%", "5%", "10%" };
+        int[] valores = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        int[] valores2 = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        double[] multiplicador = { 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000, 0.1,
+                0.01 };
 
         System.out.println("0. Negro");
         System.out.println("1. Marron");
@@ -32,9 +37,9 @@ public class Main {
         System.out.print("seleccione el primer color: ");
         Color1 = scanner.nextInt();
 
-        if (Color1 < 0 || Color1 > 9){
+        if (Color1 < 0 || Color1 > 9) {
             System.out.println("El numero ingresado es invalido, intente de nuevo");
-            return;
+
         }
         System.out.println("Seleccionaste como primer color: " + Colores[Color1]);
 
@@ -51,9 +56,9 @@ public class Main {
         System.out.print("seleccione el segundo color: ");
         Color2 = scanner.nextInt();
 
-        if (Color2 < 0 || Color2 > 9){
+        if (Color2 < 0 || Color2 > 9) {
             System.out.println("Color invalido, intente de nuevo");
-            return;
+
         }
         System.out.println("Seleccionaste como segundo color: " + Colores[Color2]);
 
@@ -73,7 +78,7 @@ public class Main {
         Multiplicador = scanner.nextInt();
 
         if (Multiplicador < 0 || Multiplicador > 11) {
-        System.out.println("Multiplicador invalido, intente de nuevo");
+            System.out.println("Multiplicador invalido, intente de nuevo");
         }
         System.out.println("Seleccionaste como multiplicador el color: " + ColoresM[Multiplicador]);
 
@@ -92,10 +97,15 @@ public class Main {
             System.out.println("Tolerancia invalida, intente de nuevo");
         }
 
-        resultadoT = (Porcentaje[(int)Tolerancia]);
+        resultadoT = (Porcentaje[(int) Tolerancia]);
 
-        resultado = (valores[Color1] * 10 + valores[Color2] * multiplicador[Multiplicador]);
-        System.out.println("el valor de la resistencia es de " + resultado + " con una tolerancia del " + resultadoT + "ohms" ); 
+        resultado = (valores[Color1] * 10 + valores2[Color2] * multiplicador[Multiplicador]);
+        if (resultado >= 1000) {
+            resultado = resultado / 1000;
+            System.out.println("el resultado es " + resultado + "k con tolerancia" + resultadoT + "ohm");
+        } else {
+            System.out.println("el resultado es " + resultado + " con tolerancia " + resultadoT + " ohm");
+        }
         scanner.close();
     }
 }
